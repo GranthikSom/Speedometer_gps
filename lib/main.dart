@@ -31,7 +31,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Speedometer',
-      home: const Scaffold(body: SpeedometerPage()),
+      debugShowCheckedModeBanner: false,
+
+      home: const Scaffold(
+        backgroundColor: Colors.black,
+        body: SpeedometerPage(),
+      ),
     );
   }
 }
