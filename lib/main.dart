@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:gps_speedometer/gps_provider.dart';
 import 'package:gps_speedometer/speedometer.dart' show SpeedometerPage;
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) {
+            final gpsProvider = SpeedProvider();
+
+            gpsProvider.startTracking();
+
+            return gpsProvider;
+          },
+        ),
+      ],
+
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,6 +29,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Speedometer', home: const SpeedometerPage());
+    return MaterialApp(
+      title: 'Speedometer',
+      home: const Scaffold(body: SpeedometerPage()),
+    );
   }
 }

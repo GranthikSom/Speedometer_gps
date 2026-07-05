@@ -66,28 +66,6 @@ class SpeedometerPage extends StatelessWidget {
                             ),
                           ],
                         ),
-
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.gps_fixed,
-                              color: speedProvider.isPaused
-                                  ? Colors.orange
-                                  : Colors.green,
-                              size: 18,
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              speedProvider.isPaused ? "PAUSED" : "GPS",
-                              style: GoogleFonts.rajdhani(
-                                color: speedProvider.isPaused
-                                    ? Colors.orange
-                                    : Colors.green,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
                       ],
                     ),
 
@@ -105,7 +83,7 @@ class SpeedometerPage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: speedProvider.speed >= 40
                                   ? Colors.red
-                                  : Theme.of(context).colorScheme.tertiary,
+                                  : Colors.white,
                             ),
                           ),
                         ),
@@ -113,11 +91,11 @@ class SpeedometerPage extends StatelessWidget {
                         Text(
                           "KM/H",
                           style: GoogleFonts.rajdhani(
-                            fontSize: 22,
+                            fontSize: 28,
                             letterSpacing: 4,
                             color: speedProvider.speed >= 40
                                 ? Colors.red
-                                : Theme.of(context).colorScheme.tertiary,
+                                : Colors.white,
                           ),
                         ),
                       ],
@@ -151,14 +129,6 @@ class SpeedometerPage extends StatelessWidget {
                             title: "DIST",
                             value:
                                 "${(speedProvider.distanceTravelled / 1000).toStringAsFixed(1)} km",
-                            fontSize: statFontSize,
-                          ),
-                        ),
-
-                        Expanded(
-                          child: _StatCard(
-                            title: "TIME",
-                            value: speedProvider.formattedRideTime,
                             fontSize: statFontSize,
                           ),
                         ),
@@ -200,9 +170,7 @@ class _StatCard extends StatelessWidget {
               style: GoogleFonts.rajdhani(
                 fontSize: 14,
                 letterSpacing: 2,
-                color: speedProvider.speed >= 40
-                    ? Colors.red
-                    : Theme.of(context).colorScheme.tertiary,
+                color: speedProvider.speed >= 40 ? Colors.red : Colors.white,
               ),
             ),
 
@@ -216,9 +184,7 @@ class _StatCard extends StatelessWidget {
                 style: GoogleFonts.orbitron(
                   fontSize: fontSize,
                   fontWeight: FontWeight.bold,
-                  color: speedProvider.speed >= 40
-                      ? Colors.red
-                      : Theme.of(context).colorScheme.tertiary,
+                  color: speedProvider.speed >= 40 ? Colors.red : Colors.white,
                 ),
               ),
             ),
