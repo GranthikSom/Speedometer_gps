@@ -7,7 +7,7 @@ int gearForSpeed(double speedKmh) {
   if (speedKmh < 90) return 4;
   if (speedKmh < 120) return 5;
   if (speedKmh < 160) return 6;
-  return 7;
+  return 1;
 }
 
 class GearIndicator extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gps_speedometer/gps_provider.dart';
-import 'package:gps_speedometer/speedometer.dart' show SpeedometerPage;
+import 'package:gps_speedometer/speed_provider.dart';
+import 'package:gps_speedometer/speedometer_page.dart' show SpeedometerPage;
 import 'package:provider/provider.dart';
 
 void main() {

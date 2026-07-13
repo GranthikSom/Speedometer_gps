@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gps_speedometer/gps_provider.dart';
+import 'package:gps_speedometer/speed_provider.dart';
 import 'package:gps_speedometer/widgets/gauge_needle.dart';
 import 'package:gps_speedometer/widgets/gear_indicator.dart';
 import 'package:gps_speedometer/widgets/outer_arc_painter.dart';
@@ -7,14 +7,14 @@ import 'package:gps_speedometer/widgets/speed_display.dart';
 import 'package:gps_speedometer/widgets/tachometer_painter.dart';
 import 'package:provider/provider.dart';
 
-class NfsSpeedometer extends StatefulWidget {
-  const NfsSpeedometer({super.key});
+class SpeedometerGauge extends StatefulWidget {
+  const SpeedometerGauge({super.key});
 
   @override
-  State<NfsSpeedometer> createState() => _NfsSpeedometerState();
+  State<SpeedometerGauge> createState() => _SpeedometerGaugeState();
 }
 
-class _NfsSpeedometerState extends State<NfsSpeedometer> {
+class _SpeedometerGaugeState extends State<SpeedometerGauge> {
   int _prevGear = 1;
   bool _shiftingUp = true;
 
@@ -30,17 +30,14 @@ class _NfsSpeedometerState extends State<NfsSpeedometer> {
 
         return SafeArea(
           child: Container(
-            color: const Color(0xFF8B8B8B),
+            color: const Color.fromARGB(255, 255, 255, 255),
             padding: const EdgeInsets.all(12),
             child: LayoutBuilder(
               builder: (context, constraints) {
                 final gaugeSize = constraints.maxHeight * 0.88;
                 return Row(
                   children: [
-                    SizedBox(
-                      width: 120,
-                      child: _leftPanel(provider),
-                    ),
+                    SizedBox(width: 120, child: _leftPanel(provider)),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Center(
@@ -52,10 +49,7 @@ class _NfsSpeedometerState extends State<NfsSpeedometer> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    SizedBox(
-                      width: 160,
-                      child: _rightPanel(provider),
-                    ),
+                    SizedBox(width: 160, child: _rightPanel(provider)),
                   ],
                 );
               },
@@ -205,10 +199,7 @@ class _NfsSpeedometerState extends State<NfsSpeedometer> {
           left: 0,
           right: 0,
           child: Center(
-            child: GearIndicator(
-              gear: _prevGear,
-              shiftingUp: _shiftingUp,
-            ),
+            child: GearIndicator(gear: _prevGear, shiftingUp: _shiftingUp),
           ),
         ),
         // Speed display at bottom center.
@@ -216,22 +207,22 @@ class _NfsSpeedometerState extends State<NfsSpeedometer> {
           bottom: size * 0.08,
           left: 0,
           right: 0,
-          child: Center(
-            child: SpeedDisplay(speed: provider.speed),
-          ),
+          child: Center(child: SpeedDisplay(speed: provider.speed)),
         ),
         // Decorative icons.
         Positioned(
           bottom: size * 0.02,
           left: size * 0.05,
-          child: Icon(Icons.science,
-              color: const Color(0xFF7CFC00), size: size * 0.06),
+          child: Icon(
+            Icons.science,
+            color: const Color(0xFF7CFC00),
+            size: size * 0.06,
+          ),
         ),
         Positioned(
           top: size * 0.02,
           right: size * 0.05,
-          child: Icon(Icons.timer,
-              color: Colors.white54, size: size * 0.06),
+          child: Icon(Icons.timer, color: Colors.white54, size: size * 0.06),
         ),
       ],
     );
